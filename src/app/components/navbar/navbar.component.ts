@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Menu } from './menu.model';
 
 @Component({
   selector: 'app-navbar',
@@ -6,6 +7,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
+
+  @Input() menuList:Menu[] = [
+    {
+      title:'Anasayfa',
+      url:'/'
+    },
+    {
+      title:'Yapılacaklar',
+      url:'/todos'
+    },
+    {
+      title:'Makaleler',
+      url:'posts'
+    }
+  ];
+
 
   constructor() { }
 
