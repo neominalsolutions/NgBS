@@ -13,7 +13,7 @@ export class AppComponent {
   // }
 
   constructor() {
-    setTheme('bs3'); // or 'bs4'
+    setTheme('bs5'); // or 'bs4'
   }
 
   title = 'AngularBS';
