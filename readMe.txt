@@ -38,3 +38,9 @@ aşağıdaki kodu app.component.ts içerisine yazalım
 
 9. Home Component dosyasına gidip aşağıdaki kodu html yapıştıralım
 <app-navbar></app-navbar>
+
+
+-- Uygulamaya OffCanvas nasıl eklenir
+
+1. Angular.json dosyasında scripts altına 
+"node_modules/bootstrap/dist/js/bootstrap.min.js" tanımlamayı unutmayalım

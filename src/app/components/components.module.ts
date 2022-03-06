@@ -5,6 +5,7 @@ import { LayoutComponent } from './layout/layout.component';
 import { RouterModule } from '@angular/router';
 import { FooterComponent } from './footer/footer.component';
 import { SidemenuComponent } from './sidemenu/sidemenu.component'; 
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 // eğer layout içerisinde router outlet kullanacak isek RouterModule bu module import etmemiz gerekir.
 
 
@@ -18,7 +19,8 @@ import { SidemenuComponent } from './sidemenu/sidemenu.component';
   ],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    BsDropdownModule.forRoot(), // offcanvas içinde dropdown kullandığımız için bsDropdownModule bu modulede tanıttık
   ],
   exports:[LayoutComponent]
 })
