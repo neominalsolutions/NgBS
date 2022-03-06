@@ -17,3 +17,24 @@ aşağıdaki kodu app.component.ts içerisine yazalım
   }
 
 
+
+
+-- Navbar Component oluşturma adımları
+1.components klasörü açalım
+2. ng generate module components --flat yazalım
+3. components klasörüne ng generate component navbar açalım
+3.1 componentsModule altına export olarak Navbar componenti çıkaralım
+4. boostrap navbar'ı navbar.html dosyasına kopyalayalım
+5. src altına Pages klasörü açalım
+6. ng generate component Home ile Anasayfa açalım
+7. AppModule Dosyasına import olarak ComponentsModule ekleyelim
+8. AppRouting Module dosyasına gidip routes içine 
+   path='' component:HomeComponent route tanımlıyalım
+
+    {
+    path:'',
+    component:HomeComponent
+  }
+
+9. Home Component dosyasına gidip aşağıdaki kodu html yapıştıralım
+<app-navbar></app-navbar>
