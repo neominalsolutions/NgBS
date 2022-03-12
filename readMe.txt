@@ -44,3 +44,31 @@ aşağıdaki kodu app.component.ts içerisine yazalım
 
 1. Angular.json dosyasında scripts altına 
 "node_modules/bootstrap/dist/js/bootstrap.min.js" tanımlamayı unutmayalım
+
+Uygulama Geneline Servis Module tanımlaması yapma kodu
+1. ng g module services --module app
+
+Bunu yapmamızın sebebi ise uygulama genelinde bu modul üzerinden pages componentlerde servisleri kullanarak sayfalarımıza veri çekebiliriz. Bu sistemi components module de olduğu gibi merkezileştiriyoruz.
+
+2. ng g service services/posts ile kendimize makalelerin bilgisini çekebileceğiz bir servis açtık.
+
+2.1 Services Module üzerinden providers tanımlaması yaparak açtığımızı PostsService aşağıdaki gibi ekledik.
+
+@NgModule({
+  imports: [CommonModule, HttpClientModule],
+  providers: [PostsService], // servis modullerde component olmadığı için bizim declaration exports gibi kullanımlara ihtiyacımız yok. Bunun yerine kendi servislerimizi dışarıya çıkarabilmek için providers a tanımlama yapıyoruz.
+})
+
+2.2 Posts Service içerisindeki constructor'a  private http: HttpClient servisimizi tanıttık. ve GetPosts adında bir method tanımlaması yaptık.
+
+3. adım makaleri çekeceğimiz için bu makalelerin verisini karşılacak bir model tanımı yaptık. ng g interface models/post
+
+
+User Service ile Modalda Makaleyi yazan kullanıcı bilgilerinin görüntülenmesi
+
+1. ng g service services/users
+2. ng g interface models/user 
+3. Users Service içerisne GetUserInfo adında bir method tanımladık.
+
+
+

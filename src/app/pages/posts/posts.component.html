@@ -1,1 +1,30 @@
-<p>posts works!</p>
+<div class="card">
+  <div class="card-header">Makaleler</div>
+  <div class="card-body" *ngFor="let item of posts$ | async">
+    <h5 class="card-title">{{ item.title }}</h5>
+    <p class="card-text">{{ item.body }}</p>
+    <a (click)="PostBy(item.userId, template)" class="btn btn-primary"
+      >Post By</a
+    >
+    <a (click)="HideModal()" class="btn btn-danger">Kapat</a>
+  </div>
+</div>
+
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">User Info</h4>
+    <button
+      type="button"
+      class="btn-close close pull-right"
+      aria-label="Close"
+      (click)="modalRef?.hide()"
+    >
+      <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+  </div>
+  <!-- eğer user bilgisi apiden çekildiyse o zaman göster -->
+  <div class="modal-body" *ngIf="user$ | async; let user">
+    Email: {{ user?.email }} UserName: {{ user?.username }} Name:
+    {{ user?.name }}
+  </div>
+</ng-template>
