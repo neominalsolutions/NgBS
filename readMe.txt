@@ -70,5 +70,37 @@ User Service ile Modalda Makaleyi yazan kullanıcı bilgilerinin görüntülenme
 2. ng g interface models/user 
 3. Users Service içerisne GetUserInfo adında bir method tanımladık.
 
+Uygulamayı Branch olarak gün gün clonelama komutu
+
+git clone -b AngularLessonOne https://github.com/neominalsolutions/NgBS.git
+
+
+Angular Dinamik Route Oluşturma İşlemleri
+
+1. Routing Module dosyasına aşağıdaki gibi dinamik bir route tanımlaması yaparız.
+ {
+    path: 'post-detail/:id', // dinamik route tanımlması yapmış olduk.
+    component: PostDetailComponent,
+  },
+
+2. İlgili sayfadan aşağıdaki gibi dinamik bir link örneği veririz.
+
+  <a class="btn btn-secondary" routerLink="/post-detail/{{ item.id }}"
+      >Detail</a
+
+3. Yönledirme yaptığımız componente gidip oradan yöneldirme yapılan değeri yakalarız. Bunun için Angularda ActivatedRoute denilen bir servis kullandık.
+
+
+let params: any = this.route.snapshot.params; 
+
+4. Eğer typescript dosyası ts uzantılı dosya üzerinden bir kontrol sonrası yönlendirme yapacak isek bu durumda ise angular Router servisini kullanırız.
+
+import { ActivatedRoute, Router } from '@angular/router';
+
+5. ilgili method ile aşağıdaki gibi bir yönledirme yaptık.
+
+ this.router.navigateByUrl('/posts'); 
+ 
+
 
 

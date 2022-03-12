@@ -1,0 +1,28 @@
+<!-- bu örnekte router link kullanmadan bir buttona tıklayarak sayfalar arası nasıl geçiş yapacağımızı öğreneceğiz. ReactJS de useNavigate() hook benzer bir kullanım yapıyoruz -->
+<button
+  style="margin-bottom: 10px"
+  (click)="redirectToPosts()"
+  class="btn btn-warning"
+>
+  Makaleler Sayfasına Geri Dön
+</button>
+
+<div class="card text-center" *ngIf="post$ | async; let post">
+  <div class="card-header">
+    {{ post.title }}
+  </div>
+  <div class="card-body">
+    <p class="card-text">{{ post.body }}</p>
+  </div>
+</div>
+
+<h1>Yorumlar</h1>
+
+<div class="card mb-3" *ngFor="let item of comments$ | async">
+  <div class="card-body">
+    <h5 class="card-title">
+      <b>{{ item.email }}</b>
+    </h5>
+    <p class="card-text">{{ item.body }}</p>
+  </div>
+</div>

@@ -13,13 +13,14 @@ import { TodosComponent } from './pages/todos/todos.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ServicesModule } from './services/services.module';
 import { PostsComponent } from './pages/posts/posts.component';
+import { PostDetailComponent } from './pages/post-detail/post-detail.component';
 
 // pages componentlerde apiden veri çekip sayfaları doldurmamız lazım bu sebeple Angular kendi httpclientModule kullanarak apiden veri çekme apiye veri gönderme işlemlerini yapabiliriz.
 // @angular/common/http bu library üzerinden api ile haberleşebiliriz.
 // reactjs de böyle hazır bir paket olmadığı için axios yada fecth api kullanıyorduk.
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, TodosComponent, PostsComponent],
+  declarations: [AppComponent, HomeComponent, TodosComponent, PostsComponent, PostDetailComponent],
   imports: [
     HttpClientModule,
     CommonModule,

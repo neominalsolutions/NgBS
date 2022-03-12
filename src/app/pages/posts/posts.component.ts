@@ -22,9 +22,7 @@ export class PostsComponent implements OnInit, OnDestroy {
     private modalService: BsModalService // modal açıcak olan servisimiz
   ) {}
 
-  ngOnDestroy(): void {
-    throw new Error('Method not implemented.');
-  }
+  ngOnDestroy(): void {}
 
   ngOnInit(): void {
     this.posts$ = this.postsService.getPosts();
