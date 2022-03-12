@@ -1,4 +1,7 @@
 <ul class="list-group">
-    <li *ngFor="let todo of todos" class="list-group-item">{{todo.title}}</li>
- 
-  </ul>
+  <li *ngFor="let todo of todos$ | async" class="list-group-item">
+    {{ todo.title }}
+  </li>
+</ul>
+
+<!-- async pipe ile Observable tipindeki bir değişkene htmlden bağlanabiliriz.içindeki değerleri okuyabiliriz. -->
