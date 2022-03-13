@@ -10,12 +10,13 @@ import { ComponentsModule } from './components/components.module';
 import { HomeComponent } from './pages/home/home.component';
 import { TodosComponent } from './pages/todos/todos.component';
 // ngx-dropdown module import ettik.
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ServicesModule } from './services/services.module';
 import { PostsComponent } from './pages/posts/posts.component';
 import { PostDetailComponent } from './pages/post-detail/post-detail.component';
 import { LoginComponent } from './pages/login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
 
 // pages componentlerde apiden veri çekip sayfaları doldurmamız lazım bu sebeple Angular kendi httpclientModule kullanarak apiden veri çekme apiye veri gönderme işlemlerini yapabiliriz.
 // @angular/common/http bu library üzerinden api ile haberleşebiliriz.
@@ -41,7 +42,11 @@ import { ReactiveFormsModule } from '@angular/forms';
     BsModule,
     ServicesModule, // Pages sayfaları için bootrap kullanırız
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    // bir servis olduğu için uygulamanın providers kısmına interceptor olarak yukarıdaki formatta tanımlanır.
+    // sayfa istekleri yani pages componentler appModule üzerinden çalışacağı için bu module interceptor tanımlarız.
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
