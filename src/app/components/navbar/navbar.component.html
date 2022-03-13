@@ -20,19 +20,36 @@
         <li class="nav-item" *ngFor="let menu of menuList; let i = index">
           <a class="nav-link" [routerLink]="menu.url">{{ menu.title }}</a>
         </li>
-        <!-- <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Features</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Pricing</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link disabled">Disabled</a>
-          </li> -->
       </ul>
+
+      <!-- state: {{ authService.IsAuthenticated() }} -->
+
+      <div class="ms-auto" *ngIf="authService.IsAuthenticated()">
+        <div class="btn-group" dropdown>
+          <button
+            id="button-animated"
+            dropdownToggle
+            type="button"
+            class="btn btn-secondary dropdown-toggle"
+            aria-controls="dropdown-animated"
+          >
+            <span class="caret"></span>
+          </button>
+          <ul
+            id="dropdown-animated"
+            *dropdownMenu
+            class="dropdown-menu"
+            role="menu"
+            aria-labelledby="button-animated"
+          >
+            <li role="menuitem">
+              <a class="dropdown-item" (click)="logOut()">Oturumu Kapat</a>
+            </li>
+          </ul>
+        </div>
+
+        <span>{{ email }}</span>
+      </div>
     </div>
   </div>
 </nav>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { AuthService } from 'src/app/services/auth.service';
 import { LoginService } from 'src/app/services/login.service';
 
 @Component({
@@ -41,14 +42,14 @@ export class LoginComponent implements OnInit {
       // api git
 
       // this.loginResult$ = this.loginService.fakelogin(formValues);
-      this.loginResult$ = this.loginService.login(formValues);
+      this.loginResult$ = this.loginService.fakelogin(formValues);
 
       // sonucunu izlemeye alıyoruz.
       this.loginResult$.subscribe((response) => {
         console.log('response', response);
 
         if (response.succeded) {
-          this.router.navigateByUrl(response.redirect);
+          window.location.href = response.redirect;
         } else {
           alert(response.message);
         }
