@@ -1,0 +1,85 @@
+<!-- angularda form işlemleri template form ve reactive form olmak üzere 2 başlıkta toplanır. Sektörde Reactive Form fonksiyonellik bakımından çok daha iyi olduğu için daha çok tercih edilir.  -->
+
+<!-- Reactive Form kullanabilmek için Reactive Forms Module adında bir modüle ihtiyacımız var. -->
+
+<!-- loginForm.get('email')?.touched form alanı içerisine focus yapılmış ise -->
+<!-- loginForm.get('email')?.dirty form alanı içerisinde birşeyler yazılmış ise -->
+
+<!-- not (loginForm.get('email')?.touched || loginForm.get('email')?.dirty) kullanımı sadece required alanlar ilk açılışta hata mesajı vermesin diye yapıyoruz.  -->
+
+<form [formGroup]="loginForm" (submit)="LoginSubmit()">
+  <div class="d-flex justify-content-center">
+    <div class="col-6">
+      <div class="mb-2">
+        <label for="exampleFormControlInput1" class="form-label">Email</label>
+        <input
+          type="email"
+          class="form-control"
+          formControlName="email"
+          id="exampleFormControlInput1"
+          placeholder="name@example.com"
+        />
+        <span
+          class="text-danger"
+          *ngIf="
+            loginForm.get('email')?.hasError('required') &&
+            (loginForm.get('email')?.touched || loginForm.get('email')?.dirty)
+          "
+        >
+          E-posta alanını boş geçmeyiniz
+        </span>
+        <span
+          class="text-danger"
+          *ngIf="loginForm.get('email')?.hasError('email')"
+        >
+          E-Posta formatında giriş yapınız
+        </span>
+      </div>
+      <div class="mb-2">
+        <label for="exampleFormControlTextarea1" class="form-label"
+          >Password</label
+        >
+
+        <!--       [minlength]="6"
+          [maxlength]="12"  Inputta 12 karakteri geçmemizi engeller. -->
+        <input
+          type="password"
+          class="form-control"
+          formControlName="password"
+          id="exampleFormControlInput1"
+          placeholder="password"
+        />
+        <span
+          class="text-danger"
+          *ngIf="
+            loginForm.get('password')?.hasError('required') &&
+            (loginForm.get('password')?.touched ||
+              loginForm.get('password')?.dirty)
+          "
+        >
+          Parola Boş geçilemez
+        </span>
+
+        <span
+          class="text-danger"
+          *ngIf="loginForm.get('password')?.hasError('minlength')"
+        >
+          Minimum 6 karakterden oluşmalıdır
+        </span>
+
+        <span
+          class="text-danger"
+          *ngIf="loginForm.get('password')?.hasError('maxlength')"
+        >
+          Maksimum 12 karakteri aşmamalıdır.
+        </span>
+      </div>
+
+      <div class="mb-2 d-flex justify-content-end">
+        <input [disabled]="loginForm.invalid" type="submit" value="Login" />
+      </div>
+    </div>
+  </div>
+</form>
+
+<!-- [disabled]="loginForm.invalid" login form validayon kurallarına uymuyorsa formun login buttonunu disabled et pasif et -->

@@ -14,13 +14,22 @@ import { HttpClientModule } from '@angular/common/http';
 import { ServicesModule } from './services/services.module';
 import { PostsComponent } from './pages/posts/posts.component';
 import { PostDetailComponent } from './pages/post-detail/post-detail.component';
+import { LoginComponent } from './pages/login/login.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 // pages componentlerde apiden veri çekip sayfaları doldurmamız lazım bu sebeple Angular kendi httpclientModule kullanarak apiden veri çekme apiye veri gönderme işlemlerini yapabiliriz.
 // @angular/common/http bu library üzerinden api ile haberleşebiliriz.
 // reactjs de böyle hazır bir paket olmadığı için axios yada fecth api kullanıyorduk.
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, TodosComponent, PostsComponent, PostDetailComponent],
+  declarations: [
+    AppComponent,
+    HomeComponent,
+    TodosComponent,
+    PostsComponent,
+    PostDetailComponent,
+    LoginComponent,
+  ],
   imports: [
     HttpClientModule,
     CommonModule,
@@ -28,6 +37,7 @@ import { PostDetailComponent } from './pages/post-detail/post-detail.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     ComponentsModule,
+    ReactiveFormsModule, // bu modül ile form işlemlerinin yapılmasını uygulamaya tanıttık.
     BsModule,
     ServicesModule, // Pages sayfaları için bootrap kullanırız
   ],

@@ -1,0 +1,47 @@
+Angularda Reactive Forms Kullanma adımları
+
+1. AppModule yada ComponentsModule ReactiveFormModule Import edilir.
+2. Formun bulunduğu page sayfasında FormGroup tipinde bir değişken tanımlanıp. FormBuilder servisi ile bu değişken form tanımlası yapılır.
+
+  loginForm: FormGroup = this.formBuilder.group({
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', Validators.required],
+  });
+
+
+  // FormBuilder Servis reactive form oluşturmamızı sağlayan bir @angular/forms dan gelen bir servistir.
+
+  // Validators ile form controlleri için gerekli olan validasyon tanımlamaları yapılır.
+
+
+  3. Html'de bir Form tag oluşturalım ve bu form tagini [formGroup]="loginForm" gibi form değişken ismimize göre işaretleyelim. Bu sayede form artık ts dosyasında değişken üzerinden kontrol edilebilecektir.
+
+  4. form içerisindeki inputlarımızı formControlName="form_alan_ismi" formControlName="email" formatında yazalım. Böylece formdaki hangi alanın html de hangi inputa karşılık geleceğini söylemiş olduk.
+
+  5. Formdaki controller üzerinde validasyon mesajları göstermek için aşağıdaki gibi bir tanımlama yapalım.
+
+   <span
+          class="text-danger"
+          *ngIf="
+            loginForm.get('email')?.hasError('required') &&
+            (loginForm.get('email')?.touched || loginForm.get('email')?.dirty)
+          "
+        >
+
+Not:  loginForm.get('email') ilgili controle erişip onun value'sunu okuyabiliriz. Biz ise yukarıda hasError('required') veya hasError('maxLength') vs gibi control'e karşılık gelen validayon hatası varmı yı kontrol ettik.
+
+//        (loginForm.get('email')?.touched || loginForm.get('email')?.dirty) bu kodu required olan tüm formcontrol lere yazılım. Sayfa ilk açıldığında böylece hata mesajı ile açılmaz.
+
+
+6. Formun validayondan geçtikten sonra submit olabilmesi için aşağıdaki gibi submit butonumuzu [disabled] attribute ile işaretleyebiliriz.
+
+  <input [disabled]="loginForm.invalid" type="submit" value="Login" />
+
+7. form için (submit) eventini tetikleyelim ve form bilgilerini okuyup api'ya istek atalım.
+
+<form [formGroup]="loginForm" (submit)="LoginSubmit()">
+</form>
+
+ LoginSubmit() {
+    const formValues = this.loginForm.value;  // object olarak form bilgilerini okuduk.
+ }
