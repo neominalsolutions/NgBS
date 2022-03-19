@@ -50,3 +50,7 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
   bootstrap: [AppComponent],
 })
 export class AppModule {}
+
+// Not: Her uygulamada en az 1 adet interceptor olur. Bu interceptorler vasıtası ile uygulamaya arabir yazılım çalıştırma işi verilmiş olur.
+// AppModule altında bu interceptor tanımlası yapılır.Provider kısmında
+//     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }, tanımlamayı yaparız.

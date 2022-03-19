@@ -14,6 +14,8 @@ import { AuthService } from '../services/auth.service';
 export class AuthInterceptor implements HttpInterceptor {
   constructor(private authService: AuthService) {}
 
+  // angular uygulması üzerinden api ile haberleşmeden öncesinde her bir istekte HTTPGET,HTTPPOST, HTTPPUT, HTTPDELETE, HTTPPATCH isteğinde araya girip. intercep methodu ile bir kontrol mekanizmasından geçmemiz sağlar. Biz burada eğer ki elimizde accessToken varsa bu acessToken'ı httpHeader içerisine set ediyoruz. Ve sunucuya bu bilgiyi gönderiyoruz.
+
   intercept(
     request: HttpRequest<unknown>,
     next: HttpHandler
@@ -27,8 +29,8 @@ export class AuthInterceptor implements HttpInterceptor {
 
       let req = request.clone({
         headers: request.headers
-          .set('Content-Type', 'application/json')
-          .set('Authorization', `Bearer ${token}`),
+          .set('Content-Type', 'application/json') // json formatında bir istek yapıcaz.
+          .set('Authorization', `Bearer ${token}`), // bu istekte aynı postman deki gibi header üzerinden isteğe accessToken ekleyerek göndereceğiz.
       });
 
       // request'in header'ında JWT token'ı Bearer tipinde gönderiyoruz.
@@ -36,6 +38,8 @@ export class AuthInterceptor implements HttpInterceptor {
 
       console.log('req', req);
 
+      // next methodu özel olarak interceptorler için tanımlanmıştır. Middleware yani ara yazılım olarak serverside dillerde de yaygın bir şekilde kullanılır. Sürecin bir sonraki aşamaya geçmesi için  süreci başka bir methoda devreder.
+      // Nodejs de birçok middleware var orada bu konuya değineceğiz.
       return next.handle(req);
     }
 

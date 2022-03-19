@@ -19,21 +19,22 @@ import { AuthService } from '../services/auth.service';
 export class AuthGuard implements CanActivate {
   constructor(private authService: AuthService, private router: Router) {}
 
+  // component istek yapıldığında canActivate methodumuz araya girip bir kontrol sağlıyor.
+  // true yada false değer döndürüp true ise süreç devanm ediyor sayfa açılıyor false ise süreç sonlanıp ya bir sayfa yönledirme yapılıyor yada ilgili sayfa yönlendirme yapılmadan sayfada kalınıyor. sayfaya yetkisi yoksa yani kullanıcı authenticated değilse kimliği doğrulanmamış ise bir accessToken sahip değilse bu durumda bu özel sayfaya login olmadan giremeyeceğin login sayfasına yönlendirme yaptık.
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
-  ):
-    | Observable<boolean | UrlTree>
-    | Promise<boolean | UrlTree>
-    | boolean
-    | UrlTree {
-    console.log('route', route);
-    console.log('state', state);
+  ): boolean {
+    console.log('guard düştü');
 
     if (!this.authService.IsAuthenticated()) {
       this.router.navigateByUrl('/login');
     }
 
-    return this.authService.IsAuthenticated();
+    // if (this.authService.IsAuthenticated()== false) {
+    //   this.router.navigateByUrl('/login');
+    // }
+
+    return true;
   }
 }
