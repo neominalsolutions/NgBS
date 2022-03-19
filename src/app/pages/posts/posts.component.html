@@ -14,6 +14,7 @@
 </div>
 
 <!-- # angularda id karşılık geliyor.  -->
+<!-- angularda ng-template ile sayfada görünmeyen gizli html elementleri oluşturup bunların duruma göre görünüp gizlenmesini sağlayabiliriz. -->
 <ng-template #template>
   <div class="modal-header">
     <h4 class="modal-title pull-left">User Info</h4>
@@ -27,6 +28,7 @@
     </button>
   </div>
   <!-- eğer user bilgisi apiden çekildiyse o zaman göster -->
+  <!-- eğer apiden çekilin user doğru bir user ise varsa -->
   <div class="modal-body" *ngIf="user$ | async; let user">
     Email: {{ user?.email }} UserName: {{ user?.username }} Name:
     {{ user?.name | uppercase }}

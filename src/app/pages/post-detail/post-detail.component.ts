@@ -20,22 +20,25 @@ export class PostDetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private postsService: PostsService,
-    private router: Router // ts dosyasından sayfalar arasında yönlendirme yapmamızı sağlayan servisimiz
+    private router: Router // ts dosyasından sayfalar arasında yönlendirme yapmamızı sağlayan servisimiz // dinamik route değerlerini okuyabilmemizi sağlayan servisimizdir. aynı zamanda sayfalar yani component arası yönlendirme işlemide yapar.
   ) {}
 
   ngOnInit(): void {
     let params: any = this.route.snapshot.params; // params dinamik route değerini okur
     // queryParams ise querystring değerini okumamız sağlar.
     console.log('params', params);
-    this.post$ = this.postsService.getPostById(params.id);
-    this.comments$ = this.postsService.getPostComments(params.id);
+    this.post$ = this.postsService.getPostById(params.id); // id:5 numaralı postu çek
+    this.comments$ = this.postsService.getPostComments(params.id); // id:5 5 nolu posta ait commentleri yorunmları çek.
   }
 
+  // window confirm ile kullanıcıya bir mesaj soran arayüz OKCancel Evet Kayıt arayüzü çıkardık. JS özelliği.
   redirectToPosts() {
     let result = window.confirm('Sayfadan ayrılmak istediğinize emin misiniz?');
 
+    // Kullanıcı Tamam OK butonuna bastıysa
     if (result == true) {
       this.router.navigateByUrl('/posts'); // post linkini yazarak yöneldirme yaptık
+      // post sayfasına yönlendir.
     } else {
       alert('Yönledirme iptal edildi!');
     }

@@ -10,6 +10,9 @@ import { Post } from '../models/post';
 export class PostsService {
   constructor(private http: HttpClient) {}
 
+  // bir servis ucunda birden fazla method ile farklı veri çekme veya veri gönderme işlenmleri yapılabilir. bu serviste 3 farklı endpoint tanımı yapılmıştır.
+
+  // tüm makaleleri getir.
   getPosts() {
     // servis methodları return etmelidir.
     return this.http.get<Post[]>('https://jsonplaceholder.typicode.com/posts');

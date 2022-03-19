@@ -20,12 +20,12 @@ const routes: Routes = [
   {
     path: 'posts',
     component: PostsComponent,
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard], // hangi ilgili componente belirli yetki dahilinde yada bir kimlik doğrulaması sonrası girebilmek için bir kontrollü arkadaşı sisteme tanıtmamız gerekiyor.
   },
   {
     path: 'post-detail/:id', // dinamik route tanımlması yapmış olduk.
     component: PostDetailComponent,
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard], // polis bekçi. giriş için accesstoken lazım.
   },
   {
     path: 'login',

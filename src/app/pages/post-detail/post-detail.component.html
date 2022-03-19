@@ -7,12 +7,14 @@
   Makaleler Sayfasına Geri Dön
 </button>
 
-<div class="card text-center" *ngIf="post$ | async; let post">
+<!-- post$ bilgisi çekildiyse -->
+
+<div class="card text-center" *ngIf="post$ | async; let data">
   <div class="card-header">
-    {{ post.title }}
+    {{ data.title }}
   </div>
   <div class="card-body">
-    <p class="card-text">{{ post.body }}</p>
+    <p class="card-text">{{ data.body }}</p>
   </div>
 </div>
 

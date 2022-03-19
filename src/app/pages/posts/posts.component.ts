@@ -14,13 +14,15 @@ import { UsersService } from 'src/app/services/users.service';
 export class PostsComponent implements OnInit, OnDestroy {
   posts$: Observable<Post[]> | undefined;
   user$: Observable<User> | undefined;
-  modalRef?: BsModalRef; // sayfadaki modal referansı
+  modalRef?: BsModalRef; // sayfadaki modal referansı, modal open olduğunda bu referans üzerinde modal program üzerinden erişilip kapatılabiliyor.
 
   constructor(
     private usersService: UsersService,
     private postsService: PostsService,
     private modalService: BsModalService // modal açıcak olan servisimiz
   ) {}
+
+  // ngx-bootsrap kullanarak bir modal service bağlantısı yapmamızı sağlıyordu.
 
   ngOnDestroy(): void {}
 
