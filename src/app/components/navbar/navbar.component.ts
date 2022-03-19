@@ -30,6 +30,10 @@ export class NavbarComponent implements OnInit {
       title: 'Oturum Aç',
       url: 'login',
     },
+    {
+      title: 'Pipe',
+      url: 'pipeSample',
+    },
   ];
 
   // bazen servisler hem html hemde ts dosyasında gösteririz. böyle durumlarda servislermizi public tercih edebiliriz.AuthService htmlde kullanacağımızdan dolayı public tercih ettik.

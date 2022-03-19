@@ -17,6 +17,8 @@ import { PostDetailComponent } from './pages/post-detail/post-detail.component';
 import { LoginComponent } from './pages/login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { PipeComponent } from './pages/pipe/pipe.component';
+import { OrderStatusPipe } from './pipes/order-status.pipe';
 
 // pages componentlerde apiden veri çekip sayfaları doldurmamız lazım bu sebeple Angular kendi httpclientModule kullanarak apiden veri çekme apiye veri gönderme işlemlerini yapabiliriz.
 // @angular/common/http bu library üzerinden api ile haberleşebiliriz.
@@ -30,6 +32,8 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
     PostsComponent,
     PostDetailComponent,
     LoginComponent,
+    PipeComponent,
+    OrderStatusPipe,
   ],
   imports: [
     HttpClientModule,

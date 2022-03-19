@@ -1,0 +1,22 @@
+<div>
+  <b>Sipariş Detayı</b>
+
+  <div>Siparişi veren: {{ order.firstName }} {{ order.lastName }}</div>
+  <div>Fiyat: {{ order.total }} {{ order.currency }}</div>
+  <div>Sipariş Tarihi: {{ order.orderDate }}</div>
+  <div>Sipariş Durumu: {{ order.orderStatus }}</div>
+</div>
+
+<div>
+  <b>Sipariş Detayı</b>
+
+  <!-- | pipe işareti kullanılır. Pipelar bir değişkenin arkasına {{ içersinde }} tanımlanır. -->
+  <div>
+    Siparişi veren: {{ order.firstName }} {{ order.lastName | uppercase }}
+  </div>
+  <div>Fiyat: {{ order.total | number: "1.0-2" | currency }}</div>
+  <div>Sipariş Tarihi: {{ order.orderDate | date: "dd:MM:YYYY HH:mm" }}</div>
+  <div>Sipariş Durumu: {{ order.orderStatus | orderStatus }}</div>
+</div>
+
+<!-- Angular pipe kullanarak ekranda componente gösterilecek olan veriler farklı bir formatta gösterilirler. -->
